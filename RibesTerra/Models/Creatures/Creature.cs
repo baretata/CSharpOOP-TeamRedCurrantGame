@@ -1,30 +1,23 @@
 ﻿namespace Models
 {
     using System;
-    
+    using System.Collections.Generic;
+
+    using Models.Creatures;
     using Models.Creatures.Interfaces;
+    using Models.Gear.Interfaces;
 
     public abstract class Creature : GameObject, ICreature, IComparable
     {
-        public void Attack()
+        public Creature(string name, decimal gold, int power, int health, GenderType gender)
+            : base(name, gold, power, health)
         {
-            throw new NotImplementedException();
-        }
-        
-        public string Name
-        {
-            get { throw new NotImplementedException(); }
+            this.Gender = gender;
         }
 
-        public string AttackPoints
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public GenderType Gender { get; private set; }
 
-        public Creatures.GenderType Gender
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public List<IGear> GearItems { get; private set; }
 
         public int CompareTo(object obj)
         {

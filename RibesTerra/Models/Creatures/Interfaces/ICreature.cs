@@ -1,13 +1,13 @@
 ﻿namespace Models.Creatures.Interfaces
 {
+    using System.Collections.Generic;
+
+    using Models.Gear.Interfaces;
+
     public interface ICreature
     {
-        public string Name { get; private set; }
-
-        public string AttackPoints { get; private set; }
-
         public GenderType Gender { get; private set; }
 
-        void Attack();
+        public List<IGear> GearItems { get; private set; }
     }
 }
