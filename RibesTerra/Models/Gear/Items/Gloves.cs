@@ -9,8 +9,8 @@
         private int defensePoints;
         private int agilityPoints;
 
-        public Gloves(string initialName, decimal initialPrice, string initialDescription, int initialDefensePoints, int initialAgilityPoints) 
-            :base(initialName,initialPrice,initialDescription)
+        public Gloves(string initialName, decimal initialPrice, string initialDescription,double initialWeight, int initialDefensePoints, int initialAgilityPoints) 
+            :base(initialName,initialPrice,initialDescription, initialWeight)
         {
             this.DefensePoints = initialDefensePoints;
             this.AgilityPoints = initialAgilityPoints;

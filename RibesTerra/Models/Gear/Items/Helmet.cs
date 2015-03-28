@@ -10,8 +10,8 @@
         
         private int defensePoints;
 
-        public Helmet(string initialName, decimal initialPrice, string initialDescription, int initialDefensePoints)
-            : base(initialName, initialPrice, initialDescription)
+        public Helmet(string initialName, decimal initialPrice, string initialDescription,double initialWeight, int initialDefensePoints)
+            : base(initialName, initialPrice, initialDescription, initialWeight)
         {   // TODO: sth smarter 
             this.defensePoints = initialDefensePoints * defensePower; 
         }

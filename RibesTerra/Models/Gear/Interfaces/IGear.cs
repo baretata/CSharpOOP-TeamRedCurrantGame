@@ -7,5 +7,7 @@
         decimal Price { get; set; }
 
         string Description { get; set; }
+
+        double Weight { get; set; }
     }
 }

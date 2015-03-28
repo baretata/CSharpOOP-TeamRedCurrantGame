@@ -9,8 +9,8 @@
         private int defensePoints;
         private double speed;
 
-        public Boots(string initialName, decimal initialPrice, string initialDescription, int initialDefencePoints, double initialSpeed)
-            : base(initialName, initialPrice, initialDescription)
+        public Boots(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialDefencePoints, double initialSpeed)
+            : base(initialName, initialPrice, initialDescription, initialWeight)
         {
             this.DefensePoints = initialDefencePoints;
             this.Speed = initialSpeed;

@@ -7,8 +7,8 @@
     {
         private int defensePoints;
 
-        public Armour(string initialName, decimal initialPrice, string initialDescription, int initialDefensePoints)
-            : base(initialName, initialPrice, initialDescription)
+        public Armour(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialDefensePoints)
+            : base(initialName, initialPrice, initialDescription, initialWeight)
         {
             this.DefensePoints = initialDefensePoints;
         }

@@ -8,13 +8,30 @@
         private string name;
         private decimal price;
         private string description;
-        //TODO: weight for hero inventar
+        private double weight;
 
-        public Gear(string initialName, decimal initialPrice, string initialDescription) 
+        public Gear(string initialName, decimal initialPrice, string initialDescription, double initialWeight) 
             : base(initialName)
         {
+            this.Weight = initialWeight;
             this.Price = initialPrice;
             this.Description = initialDescription;
+        }
+
+        public double Weight
+        {
+            get
+            {
+                return this.weight;
+            }
+            protected set
+            {
+                if (value == 0 || value < 0)
+                {
+                    throw new ArgumentException("Weight cannot be less or equal to zero!");
+                }
+                this.weight = value;
+            }
         }
 
         public string Name
