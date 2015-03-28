@@ -13,6 +13,11 @@
 
         public int BaseHealth { get; protected set; }
 
+        public GameObject(string initialName)
+        {
+            this.Name = initialName;
+        }
+
         public GameObject(string name, decimal gold, int power, int health)
         {
             this.Name = name;
