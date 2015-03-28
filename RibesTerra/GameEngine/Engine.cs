@@ -1,6 +1,7 @@
 ﻿namespace GameEngine
 {
     using System;
+    using System.Collections.Generic;
 
     using Models;                   //Usings from GameModels library
     using Models.Creatures;
