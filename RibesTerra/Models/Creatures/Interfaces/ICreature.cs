@@ -6,8 +6,8 @@
 
     public interface ICreature
     {
-        public GenderType Gender { get; private set; }
+        GenderType Gender { get; }
 
-        public List<IGear> GearItems { get; private set; }
+        List<IGear> GearItems { get; }
     }
 }

@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreatureFactory.cs" />
     <Compile Include="CustomException.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="ICreateFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

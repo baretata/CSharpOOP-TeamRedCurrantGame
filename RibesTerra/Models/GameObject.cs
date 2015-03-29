@@ -5,25 +5,32 @@
 
     public abstract class GameObject         //Main class parent of all models
     {
-        public string Name { get; private set; }
+        private string name;
 
-        public decimal GoldAmount { get; protected set; }
-
-        public int BasePower { get; protected set; }
-
-        public int BaseHealth { get; protected set; }
+        public GameObject(string name, int power, int health)
+        {
+            this.Name = name;
+        }
 
         public GameObject(string initialName)
         {
             this.Name = initialName;
         }
 
-        public GameObject(string name, decimal gold, int power, int health)
+        public string Name
         {
-            this.Name = name;
-            this.GoldAmount = gold;
-            this.BasePower = power;
-            this.BaseHealth = health;
+            get
+            {
+                return this.name;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) || value.Length < 4)
+                {
+                    throw new ArgumentException("Name cannot be less than 4 characters or empty!");
+                }
+                this.name = value;
+            }
         }
     }
 }

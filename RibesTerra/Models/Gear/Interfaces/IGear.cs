@@ -2,12 +2,12 @@
 {
     public interface IGear
     {
-        string Name { get; set; }
+        string Name { get; }
 
-        decimal Price { get; set; }
+        decimal Price { get; }
 
-        string Description { get; set; }
+        string Description { get; }
 
-        double Weight { get; set; }
+        double Weight { get; }
     }
 }

@@ -34,21 +34,7 @@
             }
         }
 
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                if (string.IsNullOrEmpty(value) || value.Length < 4)
-                {
-                    throw new ArgumentException("Name cannot be less than 4 characters or empty!");
-                }
-                this.name = value;
-            }
-        }
+        
         public decimal Price
         {
             get

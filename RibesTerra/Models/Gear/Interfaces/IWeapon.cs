@@ -2,6 +2,6 @@
 {
     public interface IWeapon : IGear
     {
-        int AttackPoints { get; protected set; }
+        int AttackPoints { get; }
     }
 }

@@ -9,11 +9,18 @@
 
     public abstract class Creature : GameObject, ICreature, IComparable
     {
-        public Creature(string name, decimal gold, int power, int health, GenderType gender)
-            : base(name, gold, power, health)
+        public Creature(string name, int power, int health, GenderType gender)
+            : base(name, power, health)
         {
+            this.BaseHealth = health;
+            this.BasePower = power;
             this.Gender = gender;
+            this.GearItems = new List<IGear>();
         }
+
+        public int BaseHealth { get; private set; }
+
+        public int BasePower { get; private set; }
 
         public GenderType Gender { get; private set; }
 
@@ -23,5 +30,6 @@
         {
             throw new NotImplementedException();
         }
+
     }
 }

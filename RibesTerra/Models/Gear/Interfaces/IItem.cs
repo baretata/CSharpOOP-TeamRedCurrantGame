@@ -2,6 +2,6 @@
 {
     public interface IItem : IGear
     {
-        int DefensePoints { get; protected set; }
+        int DefensePoints { get; }
     }
 }
