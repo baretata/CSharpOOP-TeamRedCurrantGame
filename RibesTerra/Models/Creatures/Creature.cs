@@ -17,7 +17,7 @@
 
         public GenderType Gender { get; private set; }
 
-        public List<IGear> GearItems { get; private set; }
+        public List<IGear> Inventory { get; private set; }
 
         public int CompareTo(object obj)
         {
