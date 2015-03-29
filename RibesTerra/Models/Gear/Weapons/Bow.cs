@@ -6,6 +6,8 @@
 
     public class Bow : Gear, IGear, IWeapon
     {
+        public const int MaxArrowAmount = 10;
+
         private int attackPoints;
         private int arrowAmount;
 
@@ -43,7 +45,7 @@
                 {
                     throw new ArgumentException("Arrow amount cannot be less or equal to zero!");
                 }
-                if (value > 10)
+                if (value > MaxArrowAmount)
                 {
                     throw new ArgumentException("Arrow amount cannot be more than ten!");
                 }
