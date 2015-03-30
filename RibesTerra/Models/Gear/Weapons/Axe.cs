@@ -1,12 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models.Gear.Items
+﻿namespace Models.Gear.Items
 {
-    class Axe
+    using System;
+    using Models.Gear.Interfaces;
+
+    class Axe : Gear, IGear, IWeapon
     {
+        private int attackPoints;
+
+        public Axe(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialAttackPoints)
+            : base(initialName, initialPrice, initialDescription, initialWeight)
+        {
+            this.AttackPoints = attackPoints;
+        }
+
+        public int AttackPoints
+        {
+            get
+            {
+                return this.attackPoints;
+            }
+            protected set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Attack points cannot be less or equal to zero!");
+                }
+
+                this.attackPoints = value;
+            }
+        }
     }
 }

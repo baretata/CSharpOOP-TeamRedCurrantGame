@@ -55,6 +55,7 @@
     <Compile Include="Gear\Interfaces\IItem.cs" />
     <Compile Include="Gear\Interfaces\IWeapon.cs" />
     <Compile Include="Gear\Items\Armour.cs" />
+    <Compile Include="Gear\Weapons\Axe.cs" />
     <Compile Include="Gear\Items\Boots.cs" />
     <Compile Include="Gear\Items\Gloves.cs" />
     <Compile Include="Gear\Items\Helmet.cs" />
