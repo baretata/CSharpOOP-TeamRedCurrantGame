@@ -10,6 +10,6 @@
     {
         ICharacter CreateCharacter(string name, int power, int health, string gender, decimal gold);
 
-        ICreature CreateEnemy(string name, int power, int health, string gender, decimal gold);
+        ICreature CreateEnemy(string name, int power, int health, string gender);
     }
 }

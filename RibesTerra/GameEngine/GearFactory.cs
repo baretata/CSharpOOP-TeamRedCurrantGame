@@ -3,11 +3,18 @@
     using System;
 using Models.Gear.Interfaces;
 
-    public class GearFactory
-    {
-        public IGear CreateItem(string initialName, decimal initialPrice, int initialDefensePoints);
+    //TODO: Implement every gear class to return his instance
 
-        public IGear CreateWeapon(string initialName, decimal initialPrice, int initialAttackPoints);
+    public class GearFactory : IGearFactory
+    {
+        public IGear CreateItem(string initialName, decimal initialPrice, int initialDefensePoints)
+        { 
+        }
+
+        public IGear CreateWeapon(string initialName, decimal initialPrice, int initialAttackPoints)
+        { 
+        
+        }
 
     }
 }
