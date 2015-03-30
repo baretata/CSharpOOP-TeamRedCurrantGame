@@ -1,7 +1,7 @@
 ﻿namespace Models
 {
     using System;
-
+    using Models.CustomExceptions;
     using Models.Spells;
     using Models.Spells.Interfaces;
 
@@ -28,7 +28,7 @@
             {
                 if (value.Length < 2)
                 {
-                    throw new ArgumentOutOfRangeException("The name should be at least two charavters long!");
+                    throw new InvalidRangeException<int>("The name should be at least two charavters long!", 4);
                 }
 
                 this.spellName = value;

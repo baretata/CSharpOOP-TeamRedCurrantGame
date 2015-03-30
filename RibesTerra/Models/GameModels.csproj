@@ -49,6 +49,7 @@
     <Compile Include="Creatures\Interfaces\ICreature.cs" />
     <Compile Include="Creatures\RaceStructures\Human.cs" />
     <Compile Include="Creatures\RaceStructures\Orc.cs" />
+    <Compile Include="CustomExceptions\InvalidRangeException.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Gear\Gear.cs" />
     <Compile Include="Gear\Interfaces\IGear.cs" />

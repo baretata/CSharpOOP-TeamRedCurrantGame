@@ -13,7 +13,7 @@
         public Helmet(string initialName, decimal initialPrice, string initialDescription,double initialWeight, int initialDefensePoints)
             : base(initialName, initialPrice, initialDescription, initialWeight)
         {   // TODO: sth smarter 
-            this.defensePoints = initialDefensePoints * defensePower; 
+            this.DefensePoints = initialDefensePoints * defensePower; 
         }
 
 

@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
 
+    using Models.CustomExceptions;
+
     public abstract class GameObject         //Main class parent of all models
     {
         private string name;
@@ -27,7 +29,7 @@
             {
                 if (string.IsNullOrEmpty(value) || value.Length < 4)
                 {
-                    throw new ArgumentException("Name cannot be less than 4 characters or empty!");
+                    throw new InvalidRangeException<int>("Name cannot be less than 4 characters or empty!", 4);
                 }
                 this.name = value;
             }

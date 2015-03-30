@@ -42,9 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreatureFactory.cs" />
-    <Compile Include="CustomException.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="GearFactory.cs" />
     <Compile Include="ICreateFactory.cs" />
+    <Compile Include="IGearFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

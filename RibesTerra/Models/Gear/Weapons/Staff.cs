@@ -12,11 +12,11 @@
 
         private int constructPieces;
 
-        public Staff(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialAttackPoints, int initialArrowAmount)
+        public Staff(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialAttackPoints, int initialConstructPieces)
             : base(initialName, initialPrice, initialDescription, initialWeight)
         {
-            this.AttackPoints = attackPoints;
-            this.ConstructPieces = constructPieces;
+            this.AttackPoints = initialAttackPoints;
+            this.ConstructPieces = initialConstructPieces;
         }
 
         public int AttackPoints

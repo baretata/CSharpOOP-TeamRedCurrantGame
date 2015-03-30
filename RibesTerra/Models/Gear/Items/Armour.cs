@@ -1,6 +1,7 @@
 ﻿namespace Models.Gear.Items
 {
     using System;
+    using Models.CustomExceptions;
     using Models.Gear.Interfaces;
 
     public class Armour : Gear, IGear, IItem
@@ -23,7 +24,7 @@
             {
                 if (value == 0 || value < 0)
                 {
-                    throw new ArgumentException("Defense points cannot be less or equal to zero!");
+                    throw new InvalidRangeException<int>("Defense points cannot be less or equal to zero!", 0);
                 }
                 this.defensePoints = value;
             }

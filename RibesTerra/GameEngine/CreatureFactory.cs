@@ -18,10 +18,10 @@ namespace GameEngine
                 GenderType.Male, Character.InitialCharacterGold);
         }
 
-        public ICreature CreateEnemy(string name, int power, int health, string gender, decimal gold)
+        public ICreature CreateEnemy(string name, int power, int health, string gender)
         {
-            return new Character(name, Character.InitialCharacterAttack, Character.InitialCharacterHealth,
-                GenderType.Male, Character.InitialCharacterGold);
+            return new Enemy(name, Character.InitialCharacterAttack, Character.InitialCharacterHealth,
+                GenderType.Male);
         }
     }
 }

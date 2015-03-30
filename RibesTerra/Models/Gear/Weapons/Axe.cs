@@ -10,7 +10,7 @@
         public Axe(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialAttackPoints)
             : base(initialName, initialPrice, initialDescription, initialWeight)
         {
-            this.AttackPoints = attackPoints;
+
         }
 
         public int AttackPoints
