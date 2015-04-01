@@ -1,4 +1,4 @@
-﻿namespace GameEngine
+﻿namespace GameEngine.Interfaces
 {
     using System;
 
@@ -10,6 +10,8 @@
     {
         ICharacter CreateCharacter(string name, int power, int health, string gender, decimal gold);
 
-        ICreature CreateEnemy(string name, int power, int health, string gender);
+        ICreature CreateEasyEnemy(string name, int power, int health, string gender);
+
+        ICreature CreateHardEnemy(string name, int power, int health, string gender);
     }
 }
