@@ -12,7 +12,6 @@
         public Enemy(string name, int power, int health, GenderType gender)
             : base(name, Enemy.InitialEnemyAttack, Enemy.InitialEnemyHealth, gender)
         {
-
         }
     }
 }

@@ -1,36 +1,26 @@
 ﻿namespace Models.Gear.Weapons
 {
     using System;
-
+    using Models.CustomExceptions;
     using Models.Gear.Interfaces;
 
-    public class Bow : Gear, IGear, IWeapon
+    public class Bow : Weapon, IGear, IWeapon
     {
         public const int MaxArrowAmount = 10;
+        public const decimal InitialPrice = 10; // temp
+        public const int InitialAttack = 10;    // temp
 
-        private int attackPoints;
         private int arrowAmount;
 
-        public Bow(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialAttackPoints, int initialArrowAmount)
-            : base(initialName, initialPrice, initialDescription, initialWeight)
+        public Bow(string initialName, decimal initialPrice, int attackPoints)
+            : base(initialName, Bow.InitialPrice, Bow.InitialAttack)
         {
-
         }
 
-        public int AttackPoints
+        public Bow(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialAttackPoints, int initialArrowAmount)
+            : base(initialName, Bow.InitialPrice, initialDescription, Gear.InitialGearWeight, Bow.InitialAttack)
         {
-            get
-            {
-                return this.attackPoints;
-            }
-            protected set
-            {
-                if (value == 0 || value < 0)
-                {
-                    throw new ArgumentException("Attack points cannot be less or equal to zero!");
-                }
-                this.attackPoints = value;
-            }
+            this.ArrowAmount = initialArrowAmount;
         }
 
         public int ArrowAmount
@@ -39,16 +29,17 @@
             {
                 return this.arrowAmount;
             }
-            set
+            private set
             {
-                if (value == 0 || value < 0)
+                if (value <= 0)
                 {
-                    throw new ArgumentException("Arrow amount cannot be less or equal to zero!");
+                    throw new InvalidRangeException<int>("Arrow amount cannot be less or equal to zero!", 0);
                 }
                 if (value > MaxArrowAmount)
                 {
-                    throw new ArgumentException("Arrow amount cannot be more than ten!");
+                    throw new InvalidRangeException<int>("Arrow amount cannot be more than ten!", MaxArrowAmount);
                 }
+
                 this.arrowAmount = value;
             }
         }

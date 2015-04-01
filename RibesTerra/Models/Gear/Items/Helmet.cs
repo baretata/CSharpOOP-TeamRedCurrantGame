@@ -4,33 +4,20 @@
 
     using Models.Gear.Interfaces;
 
-    public class Helmet : Gear, IGear, IItem
+    public class Helmet : Item, IGear, IItem
     {
-        public const int defensePower = 2;
-        
-        private int defensePoints;
+        public const int defensePower = 10;
 
-        public Helmet(string initialName, decimal initialPrice, string initialDescription,double initialWeight, int initialDefensePoints)
-            : base(initialName, initialPrice, initialDescription, initialWeight)
-        {   // TODO: sth smarter 
-            this.DefensePoints = initialDefensePoints * defensePower; 
+        public Helmet(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialDefensePoints)
+            : base(initialName, initialPrice, initialDescription, initialWeight, initialDefensePoints)
+        {
+            this.DefensePoints = initialDefensePoints + defensePower;
         }
 
-
-        public int DefensePoints
+        public Helmet(string initialName, decimal initialPrice, int initialDefensePoints)
+            : base(initialName, initialPrice, initialDefensePoints)
         {
-            get
-            {
-                return this.defensePoints;
-            }
-            protected set
-            {
-                if (value == 0 || value < 0)
-                {
-                    throw new ArgumentException("Defense points cannot be less or equal to zero!");
-                }
-                this.defensePoints = value;
-            }
+            this.DefensePoints = initialDefensePoints + defensePower;
         }
     }
 }

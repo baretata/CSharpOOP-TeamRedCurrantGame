@@ -1,48 +1,37 @@
 ﻿namespace Models.Gear.Items
 {
     using System;
-
+    using Models.CustomExceptions;
     using Models.Gear.Interfaces;
 
-    public class Boots : Gear, IGear, IItem
+    public class Boots : Item, IGear, IItem
     {
-        private int defensePoints;
-        private double speed;
+        public const int InitialBootsSpeed = 10;
 
-        public Boots(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialDefencePoints, double initialSpeed)
-            : base(initialName, initialPrice, initialDescription, initialWeight)
+        private int speed;
+
+        public Boots(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialDefencePoints, int initialSpeed)
+            : base(initialName, initialPrice, initialDescription, initialWeight, initialDefencePoints)
         {
-            this.DefensePoints = initialDefencePoints;
-            this.Speed = initialSpeed;
+            this.Speed = Boots.InitialBootsSpeed + initialSpeed;
         }
 
-        public int DefensePoints
+        public Boots(string initialName, decimal initialPrice, int initialDefensePoints)
+            : base(initialName, initialPrice, initialDefensePoints)
         {
-            get
-            {
-                return this.defensePoints;
-            }
-            protected set
-            {
-                if (value == 0 || value < 0)
-                {
-                    throw new ArgumentException("Defense points cannot be less or equal to zero!");
-                }
-                this.defensePoints = value;
-            }
         }
 
-        public double Speed
+        public int Speed
         {
             get
             {
                 return this.speed;
             }
-            protected set
+            private set
             {
-                if (value < 0 || value == 0)
+                if (value <= 0)
                 {
-                    throw new ArgumentException("Speed cannot be less or equal to zero!");
+                    throw new InvalidRangeException<int>("Speed cannot be less or equal to zero!", 0);
                 }
                 this.speed = value;
             }

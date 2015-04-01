@@ -9,11 +9,6 @@
     {
         private string name;
 
-        public GameObject(string name, int power, int health)
-        {
-            this.Name = name;
-        }
-
         public GameObject(string initialName)
         {
             this.Name = initialName;

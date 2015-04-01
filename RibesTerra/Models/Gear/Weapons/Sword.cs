@@ -4,30 +4,16 @@
 
     using Models.Gear.Interfaces;
 
-    public class Sword : Gear, IGear, IWeapon
+    public class Sword : Weapon, IGear, IWeapon
     {
-        private int attackPoints;
-
         public Sword(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialAttackPoints)
-            : base(initialName, initialPrice, initialDescription, initialWeight)
+            : base(initialName, initialPrice, initialDescription, initialWeight, initialAttackPoints)
         {
-            this.AttackPoints = attackPoints;
         }
 
-        public int AttackPoints
+        public Sword(string initialName, decimal initialPrice, int attackPoints)
+            : base(initialName, initialPrice, attackPoints)
         {
-            get
-            {
-                return this.attackPoints;
-            }
-            protected set
-            {
-                if (value == 0 || value < 0)
-                {
-                    throw new ArgumentException("Attack points cannot be less or equal to zero!");
-                }
-                this.attackPoints = value;
-            }
         }
     }
 }

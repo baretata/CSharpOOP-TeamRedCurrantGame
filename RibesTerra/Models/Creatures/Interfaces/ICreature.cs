@@ -6,8 +6,12 @@
 
     public interface ICreature
     {
+        int BaseHealth { get; }
+
+        int BasePower { get; }
+
         GenderType Gender { get; }
 
-        List<IGear> GearItems { get; }
+        HashSet<IGear> GearItems { get; }
     }
 }

@@ -1,35 +1,22 @@
 ﻿namespace Models.Gear.Items
 {
     using System;
-
+    using Models.CustomExceptions;
     using Models.Gear.Interfaces;
 
-    public class Gloves : Gear, IGear, IItem
+    public class Gloves : Item, IGear, IItem
     {
-        private int defensePoints;
         private int agilityPoints;
 
-        public Gloves(string initialName, decimal initialPrice, string initialDescription,double initialWeight, int initialDefensePoints, int initialAgilityPoints) 
-            :base(initialName,initialPrice,initialDescription, initialWeight)
+        public Gloves(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialDefensePoints, int initialAgilityPoints)
+            : base(initialName, initialPrice, initialDescription, initialWeight, initialDefensePoints)
         {
-            this.DefensePoints = initialDefensePoints;
             this.AgilityPoints = initialAgilityPoints;
         }
 
-        public int DefensePoints
+        public Gloves(string initialName, decimal initialPrice, int initialDefensePoints)
+            : base(initialName, initialPrice, initialDefensePoints)
         {
-            get
-            {
-                return this.defensePoints;
-            }
-            protected set
-            {
-                if (value == 0 || value < 0)
-                {
-                    throw new ArgumentException("Defense points cannot be less or equal to zero!");
-                }
-                this.defensePoints = value;
-            }
         }
 
         public int AgilityPoints
@@ -38,15 +25,14 @@
             {
                 return this.agilityPoints;
             }
-            protected set
+            private set
             {
-                if (value == 0 || value < 0)
+                if (value <= 0)
                 {
-                    throw new ArgumentException("Agility poins cannot be less or equal to zero!");
+                    throw new InvalidRangeException<int>("Agility poins cannot be less or equal to zero!", 0);
                 }
                 this.agilityPoints = value;
             }
         }
-
     }
 }

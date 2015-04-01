@@ -3,7 +3,10 @@
     using System;
     using System.Collections.Generic;
 
-    using Models;                   //Usings from GameModels library
+    using GameEngine.Factories;
+    using GameEngine.Interfaces;
+
+    using Models;                   
     using Models.Creatures;
     using Models.Creatures.Interfaces;
     using Models.Gear.Interfaces;
@@ -12,5 +15,15 @@
 
     public class Engine
     {
+        public static readonly Random rnd = new Random();
+
+        private ICreatureFactory creatureFactory;
+        private IGearFactory gearFactory;
+
+        public Engine()
+        {
+            this.creatureFactory = new CreatureFactory();
+            this.gearFactory = new GearFactory();
+        }
     }
 }

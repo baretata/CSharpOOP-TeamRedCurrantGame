@@ -7,8 +7,5 @@
         int SpellPoints { get; }
 
         SpellType SpellType { get; }
-
-        //static int PowerEffect { get; }
-        //static int HealingEffect { get; }
     }
 }

@@ -6,6 +6,11 @@
     {
         private T endRange;
 
+        public InvalidRangeException(string msg)
+            : base(msg)
+        {
+        }
+
         public InvalidRangeException(string msg, T end, Exception innerEx)
             : base(msg, innerEx)
         {

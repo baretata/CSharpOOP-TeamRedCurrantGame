@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{48967095-67C4-42D6-9898-8D2CC364B8D2}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Models</RootNamespace>
     <AssemblyName>Models</AssemblyName>
@@ -30,6 +30,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -56,6 +59,8 @@
     <Compile Include="Gear\Interfaces\IItem.cs" />
     <Compile Include="Gear\Interfaces\IWeapon.cs" />
     <Compile Include="Gear\Items\Armour.cs" />
+    <Compile Include="Gear\Items\Item.cs" />
+    <Compile Include="Gear\Items\ItemType.cs" />
     <Compile Include="Gear\Weapons\Axe.cs" />
     <Compile Include="Gear\Items\Boots.cs" />
     <Compile Include="Gear\Items\Gloves.cs" />
@@ -63,6 +68,7 @@
     <Compile Include="Gear\Weapons\Bow.cs" />
     <Compile Include="Gear\Weapons\Staff.cs" />
     <Compile Include="Gear\Weapons\Sword.cs" />
+    <Compile Include="Gear\Weapons\Weapon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spells\Interfaces\ISpell.cs" />
     <Compile Include="Spells\Spell.cs" />
@@ -70,7 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="GameModelsDiagram.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

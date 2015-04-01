@@ -1,6 +1,6 @@
 ﻿namespace Models.Gear.Interfaces
 {
-    public interface IItem : IGear
+    public interface IItem
     {
         int DefensePoints { get; }
     }

@@ -4,30 +4,16 @@
     using Models.CustomExceptions;
     using Models.Gear.Interfaces;
 
-    public class Armour : Gear, IGear, IItem
+    public class Armour : Item, IGear, IItem
     {
-        private int defensePoints;
-
-        public Armour(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialDefensePoints)
-            : base(initialName, initialPrice, initialDescription, initialWeight)
+        public Armour(string initialName, decimal initialPrice, int initialDefensePoints)
+            : base(initialName, initialPrice, initialDefensePoints)
         {
-            this.DefensePoints = initialDefensePoints;
         }
 
-        public int DefensePoints
+        public Armour(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialDefensePoints)
+            : base(initialName, initialPrice, initialDescription, initialWeight, initialDefensePoints)
         {
-            get
-            {
-                return this.defensePoints;
-            }
-            protected set
-            {
-                if (value == 0 || value < 0)
-                {
-                    throw new InvalidRangeException<int>("Defense points cannot be less or equal to zero!", 0);
-                }
-                this.defensePoints = value;
-            }
         }
     }
 }

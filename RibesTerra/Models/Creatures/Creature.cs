@@ -7,15 +7,15 @@
     using Models.Creatures.Interfaces;
     using Models.Gear.Interfaces;
 
-    public abstract class Creature : GameObject, ICreature, IComparable
+    public abstract class Creature : GameObject, ICreature, IComparable<ICreature>
     {
         public Creature(string name, int power, int health, GenderType gender)
-            : base(name, power, health)
+            : base(name)
         {
             this.BaseHealth = health;
             this.BasePower = power;
             this.Gender = gender;
-            this.GearItems = new List<IGear>();
+            this.GearItems = new HashSet<IGear>();
         }
 
         public int BaseHealth { get; private set; }
@@ -24,12 +24,14 @@
 
         public GenderType Gender { get; private set; }
 
-        public List<IGear> GearItems { get; private set; }
+        public HashSet<IGear> GearItems { get; private set; }
 
-        public int CompareTo(object obj)
+        public int CompareTo(ICreature other)
         {
-            throw new NotImplementedException();
-        }
+            var currentCreatureOverallStats = this.BaseHealth + this.BasePower;
+            var otherCreatureOverallStats = other.BaseHealth + other.BasePower;
 
+            return currentCreatureOverallStats.CompareTo(otherCreatureOverallStats); // -1 if other wins, 1 if curr win 
+        }
     }
 }

@@ -1,51 +1,41 @@
 ﻿namespace Models.Gear
 {
     using System;
+    using Models.CustomExceptions;
     using Models.Gear.Interfaces;
 
     public abstract class Gear : GameObject, IGear
     {
-        private string name;
+        public const double InitialGearWeight = 10;
+
         private decimal price;
         private string description;
         private double weight;
 
-        public Gear(string initialName, decimal initialPrice, string initialDescription, double initialWeight) 
+        public Gear(string initialName, decimal initialPrice)
             : base(initialName)
         {
-            this.Weight = initialWeight;
             this.Price = initialPrice;
-            this.Description = initialDescription;
         }
 
-        public double Weight
+        public Gear(string initialName, decimal initialPrice, string initialDescription, double initialWeight)
+            : this(initialName, initialPrice)
         {
-            get
-            {
-                return this.weight;
-            }
-            protected set
-            {
-                if (value == 0 || value < 0)
-                {
-                    throw new ArgumentException("Weight cannot be less or equal to zero!");
-                }
-                this.weight = value;
-            }
+            this.Description = initialDescription;
+            this.Weight = Gear.InitialGearWeight;
         }
 
-        
         public decimal Price
         {
             get
             {
                 return this.price;
             }
-            set
+            private set
             {
-                if (value == 0 || value < 0)
+                if (value <= 0)
                 {
-                    throw new ArgumentException("Price cannot be less or equal to zero!");
+                    throw new InvalidRangeException<int>("Price cannot be less or equal to zero!", 0);
                 }
                 this.price = value;
             }
@@ -57,13 +47,29 @@
             {
                 return this.description;
             }
-            set
+            private set
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException("Description cannot be null or empty");
+                    throw new InvalidRangeException<int>("Description cannot be null or empty", 0);
                 }
                 this.description = value;
+            }
+        }
+
+        public double Weight
+        {
+            get
+            {
+                return this.weight;
+            }
+            private set
+            {
+                if (value <= 0)
+                {
+                    throw new InvalidRangeException<double>("Weight cannot be less or equal to zero!", 0);
+                }
+                this.weight = value;
             }
         }
     }
