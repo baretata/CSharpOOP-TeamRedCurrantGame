@@ -3,6 +3,7 @@
     using System;
     using Models.CustomExceptions;
     using Models.Interfaces;
+    using Models.Extensions;
 
     public class Bow : Weapon, IGear, IWeapon
     {
@@ -18,7 +19,7 @@
         }
 
         public Bow(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialAttackPoints, int initialArrowAmount)
-            : base(initialName, Bow.InitialPrice, initialDescription, Gear.InitialGearWeight, Bow.InitialAttack)
+            : base(initialName, Bow.InitialPrice, initialDescription, Gear.InitialGearWeight, Bow.InitialAttack + RandomGenerator.Instance.Next(1, 10))
         {
             this.ArrowAmount = initialArrowAmount;
         }

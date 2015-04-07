@@ -1,9 +1,10 @@
 ﻿namespace Models
 {
     using System;
+
     using Models.CustomExceptions;
-    using Models.Spells;
     using Models.Interfaces;
+    using Models.Spells;
 
     public class Spell : ISpell
     {
@@ -28,7 +29,7 @@
             {
                 if (value.Length < 2)
                 {
-                    throw new InvalidRangeException<int>("The name should be at least two charavters long!", 4);
+                    throw new InvalidRangeException<int>("The name should be at least two charavters long!", 2);
                 }
 
                 this.spellName = value;
@@ -45,7 +46,7 @@
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("Points of the spell should have a positive value!");
+                    throw new InvalidRangeException<int>("Points of the spell should have a positive value!", 0);
                 }
 
                 this.spellPoints = value;

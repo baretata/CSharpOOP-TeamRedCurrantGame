@@ -3,6 +3,7 @@
     using System;
     using Models.CustomExceptions;
     using Models.Interfaces;
+    using Models.Extensions;
 
     public class Staff : Weapon, IGear, IWeapon
     {
@@ -11,13 +12,13 @@
         private int constructPieces;
 
         public Staff(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialAttackPoints, int initialConstructPieces)
-            : base(initialName, initialPrice, initialDescription, initialWeight, initialAttackPoints)
+            : base(initialName, initialPrice, initialDescription, initialWeight, initialAttackPoints + RandomGenerator.Instance.Next(1, 10))
         {
             this.ConstructPieces = initialConstructPieces;
         }
 
         public Staff(string initialName, decimal initialPrice, int attackPoints)
-            : base(initialName, initialPrice, attackPoints)
+            : base(initialName, initialPrice, attackPoints + RandomGenerator.Instance.Next(1, 10))
         {
         }
 

@@ -3,13 +3,14 @@
     using System;
     using Models.CustomExceptions;
     using Models.Interfaces;
+    using Models.Extensions;
 
     public class Gloves : Item, IGear, IItem
     {
         private int agilityPoints;
 
         public Gloves(string initialName, decimal initialPrice, string initialDescription, double initialWeight, int initialDefensePoints, int initialAgilityPoints)
-            : base(initialName, initialPrice, initialDescription, initialWeight, initialDefensePoints)
+            : base(initialName, initialPrice, initialDescription, initialWeight, initialDefensePoints + RandomGenerator.Instance.Next(1, 10))
         {
             this.AgilityPoints = initialAgilityPoints;
         }

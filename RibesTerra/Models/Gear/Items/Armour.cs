@@ -1,13 +1,15 @@
 ﻿namespace Models.Gear.Items
 {
     using System;
+
     using Models.CustomExceptions;
+    using Models.Extensions;
     using Models.Interfaces;
 
     public class Armour : Item, IGear, IItem
     {
         public Armour(string initialName, decimal initialPrice, int initialDefensePoints)
-            : base(initialName, initialPrice, initialDefensePoints)
+            : base(initialName, initialPrice, initialDefensePoints + RandomGenerator.Instance.Next(1, 10))
         {
         }
 
