@@ -3,6 +3,7 @@
     using System;
     using Models.CustomExceptions;
     using Models.Interfaces;
+    using System.Text;
 
     public abstract class Item : Gear, IGear, IItem
     {
@@ -35,6 +36,15 @@
 
                 this.defensePoints = value;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+            result.Append(base.ToString());
+            result.Append(string.Format(" DP: {0}", this.DefensePoints));
+
+            return result.ToString();
         }
     }
 }

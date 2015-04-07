@@ -3,6 +3,7 @@
     using System;
     using Models.CustomExceptions;
     using Models.Interfaces;
+    using System.Text;
 
     public abstract class Weapon : Gear, IGear, IWeapon
     {
@@ -34,6 +35,15 @@
                 }
                 this.attackPoints = value;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+            result.Append(base.ToString());
+            result.Append(string.Format(" AP: {0}", this.AttackPoints));
+
+            return result.ToString();
         }
     }
 }

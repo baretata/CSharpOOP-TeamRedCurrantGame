@@ -3,6 +3,8 @@
     using System;
     using Models.CustomExceptions;
     using Models.Interfaces;
+    using System.Text;
+    using System.Globalization;
 
     public abstract class Gear : GameObject, IGear
     {
@@ -71,6 +73,18 @@
                 }
                 this.weight = value;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder gearInfo = new StringBuilder();
+            gearInfo.AppendFormat(
+                CultureInfo.InvariantCulture,
+                "Name: {0}, Price: {0},",
+                this.Name,
+                this.Price);
+
+            return gearInfo.ToString();
         }
 
     }
