@@ -55,12 +55,15 @@
             {
                 InitializeGameCommand(command);
             }
-            //ProceedCommand(commandWords);
+            var commandResult = ProceedCommand(command);
+            
         }
 
         private void InitializeGameCommand(string command)
         {
             playerCharacter = InitializeCharacter(command);
+
+            // TODO: print char ToString() override
 
             enemyUnits = InitializeEnemyUnits(enemyUnits);
 
@@ -112,6 +115,8 @@
                 throw new ArgumentNullException("enemyUnit");
             }
 
+            // TODO: enemy ahead message and print ToString() overrides
+
             var playerAsGameObject = playerCharacter as GameObject;
             var enemyAsGameObject = enemyUnit as GameObject;
 
@@ -124,6 +129,7 @@
                 if (enemyUnit.BaseHealth < 0)
                 {
                     Console.WriteLine(ConsoleMessageConstants.EnemySlainMessage, enemyAsGameObject.Name);
+                    Console.WriteLine(ConsoleMessageConstants.MoveToNextLevelMessage);
 
                     enemyUnits.Remove(enemyUnit);
 
@@ -173,12 +179,16 @@
                 }
             }
         }
-
-
-
-        private void ProceedCommand(string[] commandWords)
+        
+        private string ProceedCommand(string command)
         {
-
+            switch (command)
+            {
+                case "attack":
+                case "shop":
+                default:
+                    return string.Format(ConsoleMessageConstants.InvalidCommandMessage, command);
+            }
         }
     }
 }
