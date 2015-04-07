@@ -13,6 +13,7 @@
         public Enemy(string name, int power, int health, GenderType gender)
             : base(name, Enemy.InitialEnemyAttack + RandomGenerator.Instance.Next(20, 40), Enemy.InitialEnemyHealth + RandomGenerator.Instance.Next(20, 40), gender)
         {
+           
         }
 
         public Enemy(string name, GenderType gender)

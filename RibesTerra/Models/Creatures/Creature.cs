@@ -17,7 +17,8 @@
             this.BaseHealth = health;
             this.BasePower = power;
             this.Gender = gender;
-            this.GearItems = new HashSet<IGear>();
+            this.Items = new List<IItem>();
+            this.Weapons = new List<IWeapon>();
             this.spellList = new List<ISpell>();
         }
 
@@ -27,7 +28,25 @@
 
         public GenderType Gender { get; private set; }
 
-        public HashSet<IGear> GearItems { get; private set; }
+        public List<IItem> Items { get; private set; }
+
+        public List<IWeapon> Weapons { get; private set; }
+
+        protected void AddItemsList(List<IItem> itemList)
+        {
+            foreach (var item in itemList)
+            {
+                this.Items.Add(item);
+            }
+        }
+
+        protected void AddWeaponList(List<IWeapon> weaponList)
+        {
+            foreach (var item in weaponList)
+            {
+                this.Weapons.Add(item);
+            }
+        }
 
         protected void AddSpell(Spell spellToAdd)
         {
