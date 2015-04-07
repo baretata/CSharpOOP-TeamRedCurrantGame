@@ -67,7 +67,7 @@
 
         public override string ToString()
         {
-            return string.Format("[{0} spell + {1} *{2}]",
+            return string.Format(" * [{0} spell +{1} *{2}]",
                 this.SpellName, this.SpellPoints, this.SpellType == SpellType.AttackSpell ? "AP" : "DP");
         } 
     }

@@ -95,17 +95,18 @@
                 CalculateDefensePoints(this.Items),
                 this.BaseHealth,
                 this.Gender);
+            creatureInfo.AppendLine();
+            creatureInfo.AppendLine("- Equipment:");
 
-            creatureInfo.Append(" [");
-            //foreach (var weapon in this.Weapons)
-            //{
-            //    creatureInfo.AppendFormat("{0},", weapon);
-            //}
+            foreach (var weapon in this.Weapons)
+            {
+                creatureInfo.AppendLine(string.Format(" * {0},", weapon));
+            }
 
-            //foreach (var item in this.Items)
-            //{
-            //    creatureInfo.AppendFormat("{0},", item);
-            //}
+            foreach (var item in this.Items)
+            {
+                creatureInfo.AppendLine(string.Format(" * {0},", item));
+            }
 
             foreach (var item in this.spellList)
             {
@@ -113,7 +114,7 @@
             }
 
             var result = creatureInfo.ToString().TrimEnd(',');
-            result += "]";
+            //result += "]";
 
             return result;
         }

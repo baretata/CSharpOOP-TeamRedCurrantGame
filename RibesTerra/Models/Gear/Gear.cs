@@ -80,7 +80,8 @@
             StringBuilder gearInfo = new StringBuilder();
             gearInfo.AppendFormat(
                 CultureInfo.InvariantCulture,
-                "Name: {0}, Price: {0},",
+                "Type: {0}, Name: {1}, Price: {2},",
+                this.GetType().Name,
                 this.Name,
                 this.Price);
 
