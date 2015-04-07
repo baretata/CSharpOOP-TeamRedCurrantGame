@@ -100,12 +100,12 @@
 
             foreach (var weapon in this.Weapons)
             {
-                creatureInfo.AppendLine(string.Format(" * {0},", weapon));
+                creatureInfo.AppendLine(string.Format(" * {0},", weapon).TrimEnd(','));
             }
 
             foreach (var item in this.Items)
             {
-                creatureInfo.AppendLine(string.Format(" * {0},", item));
+                creatureInfo.AppendLine(string.Format(" * {0},", item).TrimEnd(','));
             }
 
             foreach (var item in this.spellList)
