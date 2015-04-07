@@ -17,13 +17,9 @@
             : base(name, Character.InitialCharacterAttack, Character.InitialCharacterHealth, gender)
         {
             this.GoldAmount = InitialCharacterGold;
+            this.AddSpell(new Spell("Heal", 50, Spells.SpellType.HealSpell));
         }
 
         public decimal GoldAmount { get; private set; }
-
-        public void UseSpell()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

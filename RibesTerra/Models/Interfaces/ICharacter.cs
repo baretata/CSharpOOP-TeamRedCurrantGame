@@ -2,6 +2,6 @@
 {
     public interface ICharacter : ICreature
     {
-        void UseSpell();
+        //void UseSpell();
     }
 }

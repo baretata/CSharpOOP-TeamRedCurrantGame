@@ -13,8 +13,14 @@
 
         GenderType Gender { get; }
 
-        List<IItem> Items { get; }
+        ICollection<IItem> Items { get; }
 
-        List<IWeapon> Weapons { get; }
+        ICollection<IWeapon> Weapons { get; }
+
+        //int CalculateDefensePoints(ICollection<IItem> itemList);
+
+        //int CalculateAttackPoints(ICollection<IWeapon> weaponList);
+
+        void AddSpell(Spell spellToAdd);
     }
 }

@@ -31,11 +31,11 @@
 
         public GenderType Gender { get; private set; }
 
-        public List<IItem> Items { get; private set; }
+        public ICollection<IItem> Items { get; private set; }
 
-        public List<IWeapon> Weapons { get; private set; }
+        public ICollection<IWeapon> Weapons { get; private set; }
 
-        protected void AddItemsList(List<IItem> itemList)
+        public void AddItemsList(List<IItem> itemList)
         {
             foreach (var item in itemList)
             {
@@ -43,7 +43,7 @@
             }
         }
 
-        protected void AddWeaponList(List<IWeapon> weaponList)
+        public void AddWeaponList(ICollection<IWeapon> weaponList)
         {
             foreach (var item in weaponList)
             {
@@ -51,17 +51,17 @@
             }
         }
 
-        public int CalculateAttackPoints(List<IWeapon> weaponList)
+        protected int CalculateAttackPoints(ICollection<IWeapon> weaponList)
         {
             return weaponList.Sum(w => w.AttackPoints);       
         }
 
-        public int CalculateDefensePoints(List<IItem> itemList)
+        protected int CalculateDefensePoints(ICollection<IItem> itemList)
         {
             return itemList.Sum(i => i.DefensePoints);
         }
 
-        protected void AddSpell(Spell spellToAdd)
+        public void AddSpell(Spell spellToAdd)
         {
             this.spellList.Add(spellToAdd);
         }
@@ -80,8 +80,8 @@
             creatureInfo.AppendFormat(
                 CultureInfo.InvariantCulture,
                 "{0} (AP:{1}; DP:{2}; HP:{3}; GEN:{4})",
-                this.GetType().Name,
-                CalculateAttackPoints(this.Weapons),
+                this.Name,
+                CalculateAttackPoints(this.Weapons) + this.BasePower,
                 CalculateDefensePoints(this.Items),
                 this.BaseHealth,
                 this.Gender);
@@ -95,6 +95,11 @@
             foreach (var item in this.Items)
             {
                 creatureInfo.AppendFormat("{0},", item);
+            }
+             
+            foreach (var item in this.spellList)
+            {
+                creatureInfo.AppendFormat(item.ToString());
             }
 
             var result = creatureInfo.ToString().TrimEnd(',');

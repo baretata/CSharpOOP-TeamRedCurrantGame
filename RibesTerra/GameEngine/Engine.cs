@@ -64,10 +64,13 @@
             playerCharacter = InitializeCharacter(command);
 
             // TODO: print char ToString() override
+            Console.WriteLine(playerCharacter.ToString());
 
             enemyUnits = InitializeEnemyUnits(enemyUnits);
-
+            
             var easiestEnemy = SortEasiestEnemy(enemyUnits);
+
+            Console.WriteLine(easiestEnemy.ToString());
 
             HandleBattle(playerCharacter,easiestEnemy);
         }
