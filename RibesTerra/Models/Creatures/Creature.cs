@@ -10,7 +10,7 @@
     using System.Text;
     using System.Globalization;
 
-    public abstract class Creature : GameObject, ICreature, IComparable<ICreature>
+    public abstract class Creature : GameObject, ICreature
     {
         private readonly ICollection<ISpell> spellList;
 
@@ -31,9 +31,9 @@
 
         public GenderType Gender { get; private set; }
 
-        public ICollection<IItem> Items { get; private set; }
+        public ICollection<IItem> Items { get; protected set; }
 
-        public ICollection<IWeapon> Weapons { get; private set; }
+        public ICollection<IWeapon> Weapons { get; protected set; }
 
         public void AddItemsList(ICollection<IItem> itemList)
         {
@@ -76,14 +76,6 @@
             this.spellList.Add(spellToAdd);
         }
 
-        public int CompareTo(ICreature other)
-        {
-            var currentCreatureOverallStats = this.BaseHealth + this.BasePower;
-            var otherCreatureOverallStats = other.BaseHealth + other.BasePower;
-
-            return currentCreatureOverallStats.CompareTo(otherCreatureOverallStats); // -1 if other wins, 1 if curr win 
-        }
-
         public override string ToString()
         {
             StringBuilder creatureInfo = new StringBuilder();
@@ -100,12 +92,12 @@
 
             foreach (var weapon in this.Weapons)
             {
-                creatureInfo.AppendLine(string.Format(" * {0},", weapon).TrimEnd(','));
+                creatureInfo.AppendLine(string.Format(" * {0},", weapon.ToString()).TrimEnd(','));
             }
 
             foreach (var item in this.Items)
             {
-                creatureInfo.AppendLine(string.Format(" * {0},", item).TrimEnd(','));
+                creatureInfo.AppendLine(string.Format(" * {0},", item.ToString()).TrimEnd(','));
             }
 
             foreach (var item in this.spellList)
@@ -114,7 +106,6 @@
             }
 
             var result = creatureInfo.ToString().TrimEnd(',');
-            //result += "]";
 
             return result;
         }

@@ -18,10 +18,14 @@
     {
         private static readonly Engine InitialInstance = new Engine();
 
-        private ICollection<ICreature> enemyUnits;
+        //private IEnumerable<ICreature> enemyUnits;
+        private ICreature enemyUnit;
+        private ICollection<IItem> enemyUnitItem;
+        private ICollection<IWeapon> enemyUnitWeapon;
+
+        private ICharacter playerCharacter;
         private ICollection<IItem> playerCharacterItem;
         private ICollection<IWeapon> playerCharacterWeapon;
-        private ICharacter playerCharacter;
 
         private ICreatureFactory creatureFactory;
         private IGearFactory gearFactory;
@@ -31,9 +35,11 @@
             this.creatureFactory = new CreatureFactory();
             this.gearFactory = new GearFactory();
 
-            this.enemyUnits = new List<ICreature>();
             this.playerCharacterItem = new List<IItem>();
             this.playerCharacterWeapon = new List<IWeapon>();
+
+            this.enemyUnitItem = new List<IItem>();
+            this.enemyUnitWeapon = new List<IWeapon>();
         }
 
         //event 
@@ -49,16 +55,12 @@
 
         public void ParseCommand(string command)
         {
-            //string[] commandWordSeparators = new string[] { " " };
-
-            //string[] commandWords = command.Split(commandWordSeparators, StringSplitOptions.RemoveEmptyEntries);
-
             if (playerCharacter == null)
             {
                 InitializeGameCommand(command);
             }
-            var commandResult = ProceedCommand(command);
-            
+
+            ProceedCommand(command);
         }
 
         private void InitializeGameCommand(string command)
@@ -67,13 +69,9 @@
 
             Console.WriteLine(playerCharacter.ToString());
 
-            enemyUnits = InitializeEnemyUnits(enemyUnits);
-            
-            var easiestEnemy = SortEasiestEnemy(enemyUnits);
+            enemyUnit = InitializeEnemyUnit(enemyUnit);
 
-            Console.WriteLine(easiestEnemy.ToString());
-
-            HandleBattle(playerCharacter,easiestEnemy);
+            HandleBattle(playerCharacter, enemyUnit);
         }
 
         private ICharacter InitializeCharacter(string command)
@@ -87,34 +85,38 @@
             playerCharacter.AddWeaponList(playerCharacterWeapon);
 
             return playerCharacter;
-            
+
         }
 
-        private ICollection<ICreature> InitializeEnemyUnits(ICollection<ICreature> enemyUnits)
+        private ICreature InitializeEnemyUnit(ICreature enemyUnit)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                enemyUnits.Add(creatureFactory.CreateEnemy("Orcas", GenderType.Male));
-            }
 
-            return enemyUnits;
+            enemyUnit = creatureFactory.CreateEnemy("BadTrainerEnemy", (GenderType)RandomGenerator.Instance.Next(0, 2));
+
+            enemyUnitItem = gearFactory.CreateItemSet("Item", 20, 20, 20);
+            enemyUnitWeapon = gearFactory.CreateWeaponSet("Weapon", 20, 20, 20);
+
+            enemyUnit.AddItemsList(enemyUnitItem);
+            enemyUnit.AddWeaponList(enemyUnitWeapon);
+
+            return enemyUnit;
         }
 
-        private ICreature SortEasiestEnemy(IEnumerable<ICreature> enemyUnits)
-        {
-            return enemyUnits
-                    .OrderBy(e => e.BasePower)
-                    .ThenBy(e => e.BaseHealth)
-                    .FirstOrDefault();
-        }
+        //private ICreature SortEasiestEnemy(IEnumerable<ICreature> enemyUnits)
+        //{
+        //    return enemyUnits
+        //            .OrderBy(e => e.BasePower)
+        //            .ThenBy(e => e.BaseHealth)
+        //            .FirstOrDefault();
+        //}
 
-        private ICreature SortHardestEnemy(IEnumerable<ICreature> enemyUnits)
-        {
-            return enemyUnits
-                    .OrderByDescending(e => e.BasePower)
-                    .ThenByDescending(e => e.BaseHealth)
-                    .FirstOrDefault();
-        }
+        //private ICreature SortHardestEnemy(IEnumerable<ICreature> enemyUnits)
+        //{
+        //    return enemyUnits
+        //            .OrderByDescending(e => e.BasePower)
+        //            .ThenByDescending(e => e.BaseHealth)
+        //            .FirstOrDefault();
+        //}
 
         private void HandleBattle(ICharacter playerCharacter, ICreature enemyUnit)
         {
@@ -128,9 +130,7 @@
                 throw new ArgumentNullException("enemyUnit");
             }
 
-            var easiestEnemy = SortEasiestEnemy(enemyUnits);
-
-            Console.WriteLine(easiestEnemy.ToString());
+            Console.WriteLine(enemyUnit.ToString());
 
             var playerAsGameObject = playerCharacter as GameObject;
             var enemyAsGameObject = enemyUnit as GameObject;
@@ -143,30 +143,30 @@
 
                 if (enemyUnit.BaseHealth < 0)
                 {
+                    Console.WriteLine(ConsoleMessageConstants.EnemyTakeDamageMessage, playerAsGameObject.Name, playerCharacter.BasePower, enemyAsGameObject.Name);
                     Console.WriteLine(ConsoleMessageConstants.EnemySlainMessage, enemyAsGameObject.Name);
                     Console.WriteLine(ConsoleMessageConstants.MoveToNextLevelMessage);
-
-                    enemyUnits.Remove(enemyUnit);
 
                     OnNextLevelReached(EventArgs.Empty);
                     break;
                 }
                 else
                 {
-                    Console.WriteLine(ConsoleMessageConstants.EnemyTakeDamageMessage,playerAsGameObject.Name, playerCharacter.BasePower, enemyAsGameObject.Name);
+                    Console.WriteLine(ConsoleMessageConstants.EnemyTakeDamageMessage, playerAsGameObject.Name, playerCharacter.BasePower, enemyAsGameObject.Name);
                 }
-                
+
                 playerCharacter.BaseHealth -= enemyUnit.BasePower;
 
                 if (playerCharacter.BaseHealth < 0)
                 {
+                    Console.WriteLine(ConsoleMessageConstants.PlayerTakeDamageMessage, enemyAsGameObject.Name, enemyUnit.BasePower, playerAsGameObject.Name);
                     Console.WriteLine(ConsoleMessageConstants.PlayerSlainMessage, playerAsGameObject.Name);
                     Console.WriteLine(ConsoleMessageConstants.GameOverMessage);
                     Environment.Exit(0);
                 }
                 else
                 {
-                    Console.WriteLine(ConsoleMessageConstants.PlayerTakeDamageMessage,enemyAsGameObject.Name, enemyUnit.BasePower, playerAsGameObject.Name);
+                    Console.WriteLine(ConsoleMessageConstants.PlayerTakeDamageMessage, enemyAsGameObject.Name, enemyUnit.BasePower, playerAsGameObject.Name);
                 }
             }
         }
@@ -184,25 +184,38 @@
             this.playerCharacter.BaseHealth += 50;
             this.playerCharacter.BasePower += 50;
 
-            foreach (ICreature enemy in enemyUnits)
-            {
-                var enemyUnitAsCreature = enemy as ICreature;
-                if (enemyUnitAsCreature != null)
-                {
-                    enemyUnitAsCreature.BaseHealth += RandomGenerator.Instance.Next(0, 40);
-                    enemyUnitAsCreature.BasePower += RandomGenerator.Instance.Next(0, 40);
-                }
-            }
+            CloneEnemy(enemyUnit);
+
+            //foreach (ICreature enemy in enemyUnits)
+            //{
+            //    var enemyUnitAsCreature = enemy as ICreature;
+            //    if (enemyUnitAsCreature != null)
+            //    {
+            //        enemyUnitAsCreature.BaseHealth += RandomGenerator.Instance.Next(0, 40);
+            //        enemyUnitAsCreature.BasePower += RandomGenerator.Instance.Next(0, 40);
+            //    }
+            //}
         }
-        
-        private string ProceedCommand(string command)
+
+        public ICreature CloneEnemy(ICreature enemy)
+        {
+            var tempEnemy = enemyUnit as Enemy;
+            var tempClonedEnemy = tempEnemy.Clone();
+            return enemyUnit = (ICreature)tempClonedEnemy;
+        }
+
+        private void ProceedCommand(string command)
         {
             switch (command)
             {
                 case "attack":
+                    HandleBattle(playerCharacter, enemyUnit);
+                    break;
                 case "shop":
                 default:
-                    return string.Format(ConsoleMessageConstants.InvalidCommandMessage, command);
+                    Console.WriteLine(ConsoleMessageConstants.InvalidCommandMessage, command);
+                    Console.ReadLine();
+                    break;
             }
         }
     }
