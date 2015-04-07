@@ -6,7 +6,6 @@
     using Models;
     using Models.Interfaces;
     using Models.Gear.Items;
-    using Models.Spells;
 
     public class MainProgramClass
     {
@@ -18,6 +17,7 @@
 
         private static void StartOperations(Engine engine)
         {
+            Console.WriteLine(ConsoleMessageConstants.EnterNameMessage);
             string input = Console.ReadLine();
             while (input.ToLower() != "quit")
             {

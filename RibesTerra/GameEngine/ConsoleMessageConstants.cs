@@ -10,6 +10,8 @@
         public const string PlayerSlainMessage = "Player {0} slain";
         public const string PlayerTakeDamageMessage = "{0} do {1} damage to player {2}";
         public const string GameOverMessage = "GAME OVER!";
+        public const string MoveToNextLevelMessage = "Congratulations!Moved to next level!";
+        public const string InvalidCommandMessage = "Invalid command name: {0}!";
 
     }
 }
