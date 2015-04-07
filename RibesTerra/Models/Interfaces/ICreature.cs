@@ -13,6 +13,8 @@
 
         GenderType Gender { get; }
 
-        HashSet<IGear> GearItems { get; }
+        List<IItem> Items { get; }
+
+        List<IWeapon> Weapons { get; }
     }
 }
