@@ -45,7 +45,6 @@
     <Compile Include="Factories\CreatureFactory.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Factories\GearFactory.cs" />
-    <Compile Include="GameRound.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

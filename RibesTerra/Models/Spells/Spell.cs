@@ -64,29 +64,10 @@
             }
         }
 
-        //internal const int SpellEffectQuantity = 50;
-
-        //public Spell(SpellType spellType)
-        //{
-        //    this.TypeOfSpell = spellType;
-        //}
-
-        //public SpellType TypeOfSpell { get; private set; }
-
-        //public static int PowerEffect 
-        //{
-        //    get
-        //    {
-        //        return Spell.SpellEffectQuantity;      //spell will take 50 health to enemy
-        //    }
-        //}
-
-        //public static int HealingEffect
-        //{
-        //    get
-        //    {
-        //        return Spell.SpellEffectQuantity;      //spell will add 50 health to our character
-        //    }
-        //}
+        public override string ToString()
+        {
+            return string.Format("[{0} spell + {1} *{2}]",
+                this.SpellName, this.SpellPoints, this.SpellType == SpellType.AttackSpell ? "AP" : "DP");
+        } 
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace Models
 {
     using System;
-using Models.Creatures;
-using Models.Extensions;
-using Models.Interfaces;
+    using Models.Creatures;
+    using Models.Extensions;
+    using Models.Interfaces;
 
     public class Enemy : Creature, ICreature
     {

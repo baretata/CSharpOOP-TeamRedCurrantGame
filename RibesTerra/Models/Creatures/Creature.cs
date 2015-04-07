@@ -29,7 +29,7 @@
 
         public HashSet<IGear> GearItems { get; private set; }
 
-        protected void AddSpecialty(Spell spellToAdd)
+        protected void AddSpell(Spell spellToAdd)
         {
             this.spellList.Add(spellToAdd);
         }
