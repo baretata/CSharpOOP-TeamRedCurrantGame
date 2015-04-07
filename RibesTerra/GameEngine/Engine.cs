@@ -77,7 +77,8 @@
 
         private ICharacter InitializeCharacter(string command)
         {
-            return playerCharacter = creatureFactory.CreateCharacter(command, (GenderType)RandomGenerator.Instance.Next(0, 2));
+            playerCharacter = creatureFactory.CreateCharacter(command, (GenderType)RandomGenerator.Instance.Next(0, 2));
+            playerCharacter.
         }
 
         private ICollection<ICreature> InitializeEnemyUnits(ICollection<ICreature> enemyUnits)
