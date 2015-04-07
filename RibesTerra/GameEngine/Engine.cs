@@ -19,7 +19,8 @@
         private static readonly Engine InitialInstance = new Engine();
 
         private ICollection<ICreature> enemyUnits;
-        private IEnumerable<IGear> playerCharacterGear;
+        private ICollection<IItem> playerCharacterItem;
+        private ICollection<IWeapon> playerCharacterWeapon;
         private ICharacter playerCharacter;
 
         private ICreatureFactory creatureFactory;
@@ -31,7 +32,8 @@
             this.gearFactory = new GearFactory();
 
             this.enemyUnits = new List<ICreature>();
-            this.playerCharacterGear = new List<IGear>();
+            this.playerCharacterItem = new List<IItem>();
+            this.playerCharacterWeapon = new List<IWeapon>();
         }
 
         //event 
@@ -63,7 +65,6 @@
         {
             playerCharacter = InitializeCharacter(command);
 
-            // TODO: print char ToString() override
             Console.WriteLine(playerCharacter.ToString());
 
             enemyUnits = InitializeEnemyUnits(enemyUnits);
@@ -78,7 +79,15 @@
         private ICharacter InitializeCharacter(string command)
         {
             playerCharacter = creatureFactory.CreateCharacter(command, (GenderType)RandomGenerator.Instance.Next(0, 2));
-            playerCharacter.
+
+            playerCharacterItem = gearFactory.CreateItemSet("Item", 20, 20, 20);
+            playerCharacterWeapon = gearFactory.CreateWeaponSet("Weapon", 20, 20, 20);
+
+            playerCharacter.AddItemsList(playerCharacterItem);
+            playerCharacter.AddWeaponList(playerCharacterWeapon);
+
+            return playerCharacter;
+            
         }
 
         private ICollection<ICreature> InitializeEnemyUnits(ICollection<ICreature> enemyUnits)
@@ -119,7 +128,9 @@
                 throw new ArgumentNullException("enemyUnit");
             }
 
-            // TODO: enemy ahead message and print ToString() overrides
+            var easiestEnemy = SortEasiestEnemy(enemyUnits);
+
+            Console.WriteLine(easiestEnemy.ToString());
 
             var playerAsGameObject = playerCharacter as GameObject;
             var enemyAsGameObject = enemyUnit as GameObject;

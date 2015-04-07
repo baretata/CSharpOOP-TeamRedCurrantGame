@@ -17,9 +17,9 @@
 
         ICollection<IWeapon> Weapons { get; }
 
-        //int CalculateDefensePoints(ICollection<IItem> itemList);
+        void AddItemsList(ICollection<IItem> itemList);
 
-        //int CalculateAttackPoints(ICollection<IWeapon> weaponList);
+        void AddWeaponList(ICollection<IWeapon> weaponList);
 
         void AddSpell(Spell spellToAdd);
     }

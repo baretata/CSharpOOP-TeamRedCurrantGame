@@ -51,10 +51,10 @@
             }
             private set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new InvalidRangeException<int>("Description cannot be null or empty", 0);
-                }
+                //if (string.IsNullOrEmpty(value))
+                //{
+                //    throw new InvalidRangeException<int>("Description cannot be null or empty", 0);
+                //}
                 this.description = value;
             }
         }

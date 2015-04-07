@@ -35,7 +35,7 @@
 
         public ICollection<IWeapon> Weapons { get; private set; }
 
-        public void AddItemsList(List<IItem> itemList)
+        public void AddItemsList(ICollection<IItem> itemList)
         {
             foreach (var item in itemList)
             {
@@ -53,12 +53,22 @@
 
         protected int CalculateAttackPoints(ICollection<IWeapon> weaponList)
         {
-            return weaponList.Sum(w => w.AttackPoints);       
+            if (weaponList.Count > 0)
+            {
+                return weaponList.Sum(w => w.AttackPoints);
+            }
+
+            return 0;
         }
 
         protected int CalculateDefensePoints(ICollection<IItem> itemList)
         {
-            return itemList.Sum(i => i.DefensePoints);
+            if (itemList.Count > 0)
+            {
+                return itemList.Sum(i => i.DefensePoints);
+            }
+
+            return 0;
         }
 
         public void AddSpell(Spell spellToAdd)
@@ -74,7 +84,7 @@
             return currentCreatureOverallStats.CompareTo(otherCreatureOverallStats); // -1 if other wins, 1 if curr win 
         }
 
-         public override string ToString()
+        public override string ToString()
         {
             StringBuilder creatureInfo = new StringBuilder();
             creatureInfo.AppendFormat(
@@ -87,16 +97,16 @@
                 this.Gender);
 
             creatureInfo.Append(" [");
-            foreach (var weapon in this.Weapons)
-            {
-                creatureInfo.AppendFormat("{0},", weapon);
-            }
+            //foreach (var weapon in this.Weapons)
+            //{
+            //    creatureInfo.AppendFormat("{0},", weapon);
+            //}
 
-            foreach (var item in this.Items)
-            {
-                creatureInfo.AppendFormat("{0},", item);
-            }
-             
+            //foreach (var item in this.Items)
+            //{
+            //    creatureInfo.AppendFormat("{0},", item);
+            //}
+
             foreach (var item in this.spellList)
             {
                 creatureInfo.AppendFormat(item.ToString());

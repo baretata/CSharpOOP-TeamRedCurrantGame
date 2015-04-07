@@ -20,16 +20,16 @@
                 switch (itemType)
                 {
                     case ItemType.Armour:
-                        new Armour(initialName, initialPrice, null, initialWeight, initialDefensePoints);
+                        itemSet.Add(new Armour(initialName, initialPrice, null, initialWeight, initialDefensePoints));
                         break;
                     case ItemType.Boots:
-                        new Boots(initialName, initialPrice, null, initialWeight, initialDefensePoints, RandomGenerator.Instance.Next(0, 21));
+                        itemSet.Add(new Boots(initialName, initialPrice, null, initialWeight, initialDefensePoints, RandomGenerator.Instance.Next(0, 21)));
                         break;
                     case ItemType.Gloves:
-                        new Boots(initialName, initialPrice, null, initialWeight, initialDefensePoints, RandomGenerator.Instance.Next(0, 21));
+                        itemSet.Add(new Boots(initialName, initialPrice, null, initialWeight, initialDefensePoints, RandomGenerator.Instance.Next(0, 21)));
                         break;
                     case ItemType.Helmet:
-                        new Helmet(initialName, initialPrice, null, initialWeight, initialDefensePoints);
+                        itemSet.Add(new Helmet(initialName, initialPrice, null, initialWeight, initialDefensePoints));
                         break;
                     default:
                         throw new InvalidRangeException<IItem>("Item does not exist");
@@ -48,13 +48,13 @@
                 switch (weaponType)
                 {
                     case WeaponType.Bow:
-                        new Bow(initialName, initialPrice, null, initialWeight, initialAttackPoints, Bow.MaxArrowAmount);
+                        weaponSet.Add(new Bow(initialName, initialPrice, null, initialWeight, initialAttackPoints, Bow.MaxArrowAmount));
                         break;
                     case WeaponType.Staff:
-                        new Staff(initialName, initialPrice, null, initialWeight, initialAttackPoints, Staff.MaxConstructPieces);
+                         weaponSet.Add(new Staff(initialName, initialPrice, null, initialWeight, initialAttackPoints, Staff.MaxConstructPieces));
                         break;
                     case WeaponType.Sword:
-                        new Sword(initialName, initialPrice, null, initialWeight, initialAttackPoints);
+                         weaponSet.Add(new Sword(initialName, initialPrice, null, initialWeight, initialAttackPoints));
                         break;
                     default:
                         throw new InvalidRangeException<IItem>("Weapon does not exist");
