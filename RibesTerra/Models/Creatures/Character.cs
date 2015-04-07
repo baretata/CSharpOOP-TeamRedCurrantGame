@@ -1,9 +1,11 @@
 ﻿namespace Models
 {
     using System;
+    using System.Text;
 
     using Models.Creatures;
     using Models.Interfaces;
+    using System.Globalization;
 
     public class Character : Creature, ICreature, ICharacter
     {

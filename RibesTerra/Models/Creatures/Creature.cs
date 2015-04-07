@@ -3,9 +3,12 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
 
     using Models.Creatures;
     using Models.Interfaces;
+    using System.Text;
+    using System.Globalization;
 
     public abstract class Creature : GameObject, ICreature, IComparable<ICreature>
     {
@@ -48,6 +51,16 @@
             }
         }
 
+        public int CalculateAttackPoints(List<IWeapon> weaponList)
+        {
+            return weaponList.Sum(w => w.AttackPoints);       
+        }
+
+        public int CalculateDefensePoints(List<IItem> itemList)
+        {
+            return itemList.Sum(i => i.DefensePoints);
+        }
+
         protected void AddSpell(Spell spellToAdd)
         {
             this.spellList.Add(spellToAdd);
@@ -59,6 +72,35 @@
             var otherCreatureOverallStats = other.BaseHealth + other.BasePower;
 
             return currentCreatureOverallStats.CompareTo(otherCreatureOverallStats); // -1 if other wins, 1 if curr win 
+        }
+
+         public override string ToString()
+        {
+            StringBuilder creatureInfo = new StringBuilder();
+            creatureInfo.AppendFormat(
+                CultureInfo.InvariantCulture,
+                "{0} (AP:{1}; DP:{2}; HP:{3}; GEN:{4})",
+                this.GetType().Name,
+                CalculateAttackPoints(this.Weapons),
+                CalculateDefensePoints(this.Items),
+                this.BaseHealth,
+                this.Gender);
+
+            creatureInfo.Append(" [");
+            foreach (var weapon in this.Weapons)
+            {
+                creatureInfo.AppendFormat("{0},", weapon);
+            }
+
+            foreach (var item in this.Items)
+            {
+                creatureInfo.AppendFormat("{0},", item);
+            }
+
+            var result = creatureInfo.ToString().TrimEnd(',');
+            result += "]";
+
+            return result;
         }
     }
 }
