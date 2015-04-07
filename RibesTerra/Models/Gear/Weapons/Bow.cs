@@ -8,8 +8,8 @@
     public class Bow : Weapon, IGear, IWeapon
     {
         public const int MaxArrowAmount = 10;
-        public const decimal InitialPrice = 10; // temp
-        public const int InitialAttack = 10;    // temp
+        public const decimal InitialPrice = 10; 
+        public const int InitialAttack = 10;    
 
         private int arrowAmount;
 

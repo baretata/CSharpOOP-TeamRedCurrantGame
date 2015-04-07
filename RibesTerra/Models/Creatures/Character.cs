@@ -21,5 +21,10 @@
         }
 
         public decimal GoldAmount { get; private set; }
+
+        public void UseSpell()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

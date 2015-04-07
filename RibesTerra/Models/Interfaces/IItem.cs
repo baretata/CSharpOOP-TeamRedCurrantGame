@@ -1,7 +1,7 @@
 ﻿namespace Models.Interfaces
 {
-    public interface IItem
+    public interface IItem : IGear
     {
-        int DefensePoints { get; }
+        int DefensePoints { get; set; }
     }
 }

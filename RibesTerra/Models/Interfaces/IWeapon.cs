@@ -1,7 +1,7 @@
 ﻿namespace Models.Interfaces
 {
-    public interface IWeapon
+    public interface IWeapon : IGear
     {
-        int AttackPoints { get; }
+        int AttackPoints { get; set; }
     }
 }

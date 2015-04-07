@@ -49,6 +49,8 @@
     <Compile Include="Creatures\Enemy.cs" />
     <Compile Include="Creatures\GenderType.cs" />
     <Compile Include="Extensions\RandomGenerator.cs" />
+    <Compile Include="Gear\Shop\GearInStock.cs" />
+    <Compile Include="Gear\Shop\ItemShop.cs" />
     <Compile Include="Gear\Weapons\WeaponType.cs" />
     <Compile Include="Interfaces\ICharacter.cs" />
     <Compile Include="Interfaces\ICreature.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="Interfaces\IGear.cs" />
     <Compile Include="Interfaces\IGearFactory.cs" />
     <Compile Include="Interfaces\IItem.cs" />
+    <Compile Include="Interfaces\IItemShop.cs" />
     <Compile Include="Interfaces\IWeapon.cs" />
     <Compile Include="Gear\Items\Armour.cs" />
     <Compile Include="Gear\Items\Item.cs" />

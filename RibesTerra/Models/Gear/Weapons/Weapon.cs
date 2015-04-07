@@ -27,7 +27,7 @@
             {
                 return this.attackPoints;
             }
-            protected set
+            set
             {
                 if (value <= 0)
                 {

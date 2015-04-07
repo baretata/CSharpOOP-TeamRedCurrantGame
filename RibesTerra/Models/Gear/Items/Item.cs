@@ -27,7 +27,7 @@
             {
                 return this.defensePoints;
             }
-            protected set
+            set
             {
                 if (value <= 0)
                 {

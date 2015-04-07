@@ -27,7 +27,7 @@
             {
                 if (string.IsNullOrEmpty(value) || value.Length < 2)
                 {
-                    throw new InvalidRangeException<int>("Name cannot be less than 4 characters or empty!", 4);
+                    throw new InvalidRangeException<int>("Name cannot be less than 4 characters or empty!");
                 }
 
                 this.name = value;

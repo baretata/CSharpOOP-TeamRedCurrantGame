@@ -1,39 +1,40 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using Models.Gear.Weapons;
-using Models.Gear.Items;
-using Models.Interfaces;
-using System.Text;
-using System.Globalization;
-
-namespace Models.Gear
+﻿namespace Models.Gear.Shop
 {
-    public class ItemShop
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Text;
+
+    using Models.Gear.Weapons;
+    using Models.Gear.Items;
+    using Models.Interfaces;
+
+    public class ItemShop : IItemShop
     {
         public GearInStock gearInStock;
 
-        private IEnumerable<IWeapon> weapon = new IList<IWeapon>();
-        private IEnumerable<IItem> item = new IList<IItem>();
+        private IEnumerable<IWeapon> weapon = new List<IWeapon>();
+        private IEnumerable<IItem> item = new List<IItem>();
         public ItemShop(IEnumerable<IGear> gearInStock)
         {
-            this.gearInStock = new GearInStock(weapon,item);
+            this.gearInStock = new GearInStock(weapon, item);
         }
-        
-        public Weapon WeaponUpgrade(Weapon weapon)
+
+        public IWeapon WeaponUpgrade(IWeapon weapon)
         {
             weapon.AttackPoints += 50;
-            if(weapon.AttackPoints==100)
+            if (weapon.AttackPoints > 100)
             {
                 weapon.AttackPoints = 100;
             }
             return weapon;
         }
 
-        public Item ItemUpgrade(Item item)
+        public IItem ItemUpgrade(IItem item)
         {
             item.DefensePoints += 50;
-            if(item.DefensePoints>100)
+            if (item.DefensePoints > 100)
             {
                 item.DefensePoints = 100;
             }
@@ -50,6 +51,6 @@ namespace Models.Gear
             return gearInfo.ToString();
         }
 
-       
+
     }
 }
