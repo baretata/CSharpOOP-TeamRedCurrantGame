@@ -18,6 +18,7 @@
             this.BasePower = power;
             this.Gender = gender;
             this.GearItems = new HashSet<IGear>();
+            this.spellList = new List<ISpell>();
         }
 
         public int BaseHealth { get; set; }
