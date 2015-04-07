@@ -2,7 +2,7 @@
 {
     using System;
     using Models.CustomExceptions;
-    using Models.Gear.Interfaces;
+    using Models.Interfaces;
 
     public abstract class Item : Gear, IGear, IItem
     {

@@ -3,7 +3,7 @@
     using System;
     using Models.CustomExceptions;
     using Models.Spells;
-    using Models.Spells.Interfaces;
+    using Models.Interfaces;
 
     public class Spell : ISpell
     {

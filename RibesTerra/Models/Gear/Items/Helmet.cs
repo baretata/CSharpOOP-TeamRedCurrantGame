@@ -2,7 +2,7 @@
 {
     using System;
 
-    using Models.Gear.Interfaces;
+    using Models.Interfaces;
 
     public class Helmet : Item, IGear, IItem
     {

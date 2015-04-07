@@ -1,7 +1,7 @@
 ﻿namespace Models.Gear.Weapons
 {
     using System;
-    using Models.Gear.Interfaces;
+    using Models.Interfaces;
 
     public class Axe : Weapon, IGear, IWeapon
     {

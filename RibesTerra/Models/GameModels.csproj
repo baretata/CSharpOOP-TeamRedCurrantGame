@@ -48,16 +48,18 @@
     <Compile Include="Creatures\Creature.cs" />
     <Compile Include="Creatures\Enemy.cs" />
     <Compile Include="Creatures\GenderType.cs" />
-    <Compile Include="Creatures\Interfaces\ICharacter.cs" />
-    <Compile Include="Creatures\Interfaces\ICreature.cs" />
-    <Compile Include="Creatures\RaceStructures\Human.cs" />
-    <Compile Include="Creatures\RaceStructures\Orc.cs" />
+    <Compile Include="Extensions\RandomGenerator.cs" />
+    <Compile Include="Gear\Weapons\WeaponType.cs" />
+    <Compile Include="Interfaces\ICharacter.cs" />
+    <Compile Include="Interfaces\ICreature.cs" />
     <Compile Include="CustomExceptions\InvalidRangeException.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Gear\Gear.cs" />
-    <Compile Include="Gear\Interfaces\IGear.cs" />
-    <Compile Include="Gear\Interfaces\IItem.cs" />
-    <Compile Include="Gear\Interfaces\IWeapon.cs" />
+    <Compile Include="Interfaces\ICreatureFactory.cs" />
+    <Compile Include="Interfaces\IGear.cs" />
+    <Compile Include="Interfaces\IGearFactory.cs" />
+    <Compile Include="Interfaces\IItem.cs" />
+    <Compile Include="Interfaces\IWeapon.cs" />
     <Compile Include="Gear\Items\Armour.cs" />
     <Compile Include="Gear\Items\Item.cs" />
     <Compile Include="Gear\Items\ItemType.cs" />
@@ -70,7 +72,7 @@
     <Compile Include="Gear\Weapons\Sword.cs" />
     <Compile Include="Gear\Weapons\Weapon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Spells\Interfaces\ISpell.cs" />
+    <Compile Include="Interfaces\ISpell.cs" />
     <Compile Include="Spells\Spell.cs" />
     <Compile Include="Spells\SpellType.cs" />
   </ItemGroup>

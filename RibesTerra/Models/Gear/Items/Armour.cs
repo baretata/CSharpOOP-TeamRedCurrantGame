@@ -2,7 +2,7 @@
 {
     using System;
     using Models.CustomExceptions;
-    using Models.Gear.Interfaces;
+    using Models.Interfaces;
 
     public class Armour : Item, IGear, IItem
     {

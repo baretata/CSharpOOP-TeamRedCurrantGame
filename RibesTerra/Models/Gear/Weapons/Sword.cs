@@ -2,7 +2,7 @@
 {
     using System;
 
-    using Models.Gear.Interfaces;
+    using Models.Interfaces;
 
     public class Sword : Weapon, IGear, IWeapon
     {

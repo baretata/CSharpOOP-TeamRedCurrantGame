@@ -2,37 +2,26 @@
 {
     using System;
     using System.Collections.Generic;
-
     using GameEngine;
-    using GameEngine.Interfaces;
     using Models;
     using Models.Creatures;
-    using Models.Creatures.Interfaces;
+    using Models.Extensions;
+    using Models.Interfaces;
 
     public class CreatureFactory : ICreatureFactory
     {
-        public ICharacter CreateCharacter(string name, int power, int health, string gender, decimal gold)
+        public ICharacter CreateCharacter(string name, GenderType gender)
         {
-            return new Character(name, Character.InitialCharacterAttack, Character.InitialCharacterHealth,
-                GenderType.Male, Character.InitialCharacterGold);
+            return new Character(name, gender);
         }
 
-        public ICreature CreateEasyEnemy(string name, int power, int health, string gender)
+        public ICreature CreateEnemy(string name, GenderType gender)
         {
             return new Enemy(
                 name,
-                Enemy.InitialEnemyAttack + Engine.rnd.Next(0, 20),
-                Enemy.InitialEnemyHealth + Engine.rnd.Next(0, 20),
-                (GenderType)Engine.rnd.Next(0, 2));
-        }
-
-        public ICreature CreateHardEnemy(string name, int power, int health, string gender)
-        {
-            return new Enemy(
-                   name,
-                   Enemy.InitialEnemyAttack + Engine.rnd.Next(30, 50),
-                   Enemy.InitialEnemyHealth + Engine.rnd.Next(30, 50),
-                   (GenderType)Engine.rnd.Next(0, 2));
+                Enemy.InitialEnemyAttack,
+                Enemy.InitialEnemyHealth,
+                gender);
         }
     }
 }

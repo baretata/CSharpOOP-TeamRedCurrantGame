@@ -2,12 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using GameEngine.Interfaces;
     using Models.CustomExceptions;
     using Models.Gear;
-    using Models.Gear.Interfaces;
+    using Models.Interfaces;
     using Models.Gear.Items;
     using Models.Gear.Weapons;
+    using Models.Extensions;
 
     public class GearFactory : IGearFactory
     {
@@ -20,16 +20,16 @@
                 switch (itemType)
                 {
                     case ItemType.Armour:
-                        new Armour(initialName, initialPrice + Engine.rnd.Next(0, 21), null, initialWeight + Engine.rnd.Next(0, 21), initialDefensePoints + Engine.rnd.Next(0, 21));
+                        new Armour(initialName, initialPrice, null, initialWeight, initialDefensePoints);
                         break;
                     case ItemType.Boots:
-                        new Boots(initialName, initialPrice + Engine.rnd.Next(0, 21), null, initialWeight + Engine.rnd.Next(0, 21), initialDefensePoints + Engine.rnd.Next(0, 21), Engine.rnd.Next(0, 21));
+                        new Boots(initialName, initialPrice, null, initialWeight, initialDefensePoints, RandomGenerator.Instance.Next(0, 21));
                         break;
                     case ItemType.Gloves:
-                        new Boots(initialName, initialPrice + Engine.rnd.Next(0, 21), null, initialWeight + Engine.rnd.Next(0, 21), initialDefensePoints + Engine.rnd.Next(0, 21), Engine.rnd.Next(0, 21));
+                        new Boots(initialName, initialPrice, null, initialWeight, initialDefensePoints, RandomGenerator.Instance.Next(0, 21));
                         break;
                     case ItemType.Helmet:
-                        new Helmet(initialName, initialPrice + Engine.rnd.Next(0, 21), null, initialWeight + Engine.rnd.Next(0, 21), initialDefensePoints + Engine.rnd.Next(0, 21));
+                        new Helmet(initialName, initialPrice, null, initialWeight, initialDefensePoints);
                         break;
                     default:
                         throw new InvalidRangeException<IItem>("Item does not exist");
@@ -37,24 +37,31 @@
             }
 
             return itemSet;
-
-            //return new List<IItem> 
-            //{
-            //    new Armour(initialName,initialPrice + Engine.rnd.Next(0,21), null,initialWeight + Engine.rnd.Next(0,21), initialDefensePoints + Engine.rnd.Next(0,21)),
-            //    new Boots(initialName, initialPrice + Engine.rnd.Next(0,21), null,initialWeight + Engine.rnd.Next(0,21), initialDefensePoints + Engine.rnd.Next(0,21), Engine.rnd.Next(0,21)),
-            //    new Gloves(initialName, initialPrice + Engine.rnd.Next(0,21),null,initialWeight + Engine.rnd.Next(0,21), initialDefensePoints + Engine.rnd.Next(0,21), Engine.rnd.Next(0,21)),
-            //    new Helmet(initialName, initialPrice + Engine.rnd.Next(0,21),null,initialWeight + Engine.rnd.Next(0,21), initialDefensePoints + Engine.rnd.Next(0,21))
-            //};
         }
 
         public IList<IWeapon> CreateWeaponSet(string initialName, decimal initialPrice, double initialWeight, int initialAttackPoints)
         {
-            return new List<IWeapon> 
+            var weaponSet = new List<IWeapon>();
+
+            foreach (var weaponType in (WeaponType[])Enum.GetValues(typeof(WeaponType)))
             {
-                new Bow(initialName, initialPrice + Engine.rnd.Next(0,21),null, initialWeight + Engine.rnd.Next(0,21), initialAttackPoints + Engine.rnd.Next(0,21),Bow.MaxArrowAmount),
-                new Staff(initialName, initialPrice + Engine.rnd.Next(0,21),null, initialWeight + Engine.rnd.Next(0,21), initialAttackPoints + Engine.rnd.Next(0,21),Staff.MaxConstructPieces),
-                new Sword(initialName, initialPrice + Engine.rnd.Next(0,21),null, initialWeight + Engine.rnd.Next(0,21), initialAttackPoints + Engine.rnd.Next(0,21))
-            };
+                switch (weaponType)
+                {
+                    case WeaponType.Bow:
+                        new Bow(initialName, initialPrice, null, initialWeight, initialAttackPoints, Bow.MaxArrowAmount);
+                        break;
+                    case WeaponType.Staff:
+                        new Staff(initialName, initialPrice, null, initialWeight, initialAttackPoints, Staff.MaxConstructPieces);
+                        break;
+                    case WeaponType.Sword:
+                        new Sword(initialName, initialPrice, null, initialWeight, initialAttackPoints);
+                        break;
+                    default:
+                        throw new InvalidRangeException<IItem>("Weapon does not exist");
+                }
+            }
+
+            return weaponSet;
         }
     }
 }

@@ -41,11 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleMessageConstants.cs" />
     <Compile Include="Factories\CreatureFactory.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Factories\GearFactory.cs" />
-    <Compile Include="Interfaces\ICreatureFactory.cs" />
-    <Compile Include="Interfaces\IGearFactory.cs" />
+    <Compile Include="GameRound.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,6 +58,7 @@
       <Name>GameModels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
